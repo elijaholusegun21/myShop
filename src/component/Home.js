@@ -26,7 +26,7 @@ export const Home = () => {
   if (loading) {
     return (
       <div className="flex justify-center items-center h-screen">
-        <RingLoader color="#3498db" size={60} /> {/* Show spinner while loading */}
+        <RingLoader color="#3498db" size={60} /> 
       </div>
     );
   }

@@ -42,7 +42,7 @@ const ProductCard = ({ product }) => {
         to={`/product/${product.id}`} 
         className="text-blue-500 hover:underline mb-4 block"
       >
-        View Details
+        More Details
       </Link>
 
       <button 

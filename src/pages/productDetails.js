@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { useCart } from "../context/cartContext";
 import { useAuth } from "../context/AuthContext";
+import { RingLoader } from "react-spinners";
 
 const ProductDetail = () => {
   const { id } = useParams();
@@ -40,7 +41,11 @@ const ProductDetail = () => {
   };
 
   if (loading) {
-    return <div className="flex items-center justify-center min-h-screen">Loading...</div>;
+    return (
+        <div className="flex justify-center items-center h-screen">
+          <RingLoader color="#3498db" size={60} /> 
+        </div>
+      );
   }
 
   if (error) {
