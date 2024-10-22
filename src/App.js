@@ -20,6 +20,7 @@ import AboutUs from "./component/aboutUs";
 import Products from "./pages/product";
 import NotFound from "./pages/notFound";
 import Cart from "./pages/cart";
+import ProductDetail from "./pages/productDetails";
 
 // Layouts
 import { MainLayout } from "./layouts/mainLayout";
@@ -30,6 +31,7 @@ const router = createBrowserRouter(
     <Route path="/" element={<MainLayout />}>
       <Route index element={<Home />} />
       <Route path="/products" element={<Products />} />
+       <Route path="/product/:id" element={<ProductDetail />} />
       <Route path="/cart" element={<Cart />} />
       <Route path="/loginForm" element={<LoginForm />} />
       <Route path="/registrationForm" element={<RegistrationForm />} />

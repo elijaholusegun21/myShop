@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { useCart } from "../context/cartContext";
 import { useAuth } from "../context/AuthContext"; // Import the AuthContext
 
@@ -21,48 +21,76 @@ const Navbar = () => {
         {/* Links for Desktop */}
         <ul className={`absolute top-full left-0 w-full bg-white flex-col justify-center z-10 items-center md:bg-transparent md:relative md:flex md:flex-row md:space-x-6 md:w-auto ${isMenuOpen ? 'block' : 'hidden'}`}>
           <li>
-            <Link to="/" className="block px-4 py-2 text-gray-600 hover:text-blue-500 font-Kanit font-medium text-sm text-center">Home</Link>
+            <NavLink
+              exact
+              to="/"
+              className={({ isActive }) => 
+                isActive ? "font-bold text-blue-700 border-b-2 border-blue-700" : "text-gray-600 hover:text-blue-500"
+              }
+            >
+              Home
+            </NavLink>
           </li>
           <li>
-            <Link to="/products" className="block px-4 py-2 text-gray-600 hover:text-blue-500 font-Kanit font-medium text-sm text-center">Products</Link>
+            <NavLink
+              to="/products"
+              className={({ isActive }) => 
+                isActive ? "font-bold text-blue-700 border-b-2 border-blue-700" : "text-gray-600 hover:text-blue-500"
+              }
+            >
+              Products
+            </NavLink>
           </li>
           <li>
-            <Link to="/contact" className="block px-4 py-2 text-gray-600 hover:text-blue-500 font-Kanit font-medium text-sm text-center">Contact Us</Link>
+            <NavLink
+              to="/contact"
+              className={({ isActive }) => 
+                isActive ? "font-bold text-blue-700 border-b-2 border-blue-700" : "text-gray-600 hover:text-blue-500"
+              }
+            >
+              Contact Us
+            </NavLink>
           </li>
           <li>
-            <Link to="/about" className="block px-4 py-2 text-gray-600 hover:text-blue-500 font-Kanit font-medium text-sm text-center">About Us</Link>
+            <NavLink
+              to="/about"
+              className={({ isActive }) => 
+                isActive ? "font-bold text-blue-700 border-b-2 border-blue-700" : "text-gray-600 hover:text-blue-500"
+              }
+            >
+              About Us
+            </NavLink>
           </li>
         </ul>
 
         {/* Cart/Account Icons */}
         <ul className="flex items-center space-x-4">
           <li>
-            <Link to="/cart" className="flex items-center relative">
+            <NavLink to="/cart" className="flex items-center relative">
               <svg className="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 0 0-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 0 0-16.536-1.84M7.5 14.25 5.106 5.272M6 20.25a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Zm12.75 0a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Z" />
               </svg>
-
               {cartItems.length > 0 && (
                 <span className="absolute top-0 right-0 bg-red-500 text-white text-xs rounded-full px-1">
                   {cartItems.length}
                 </span>
               )}
-            </Link>
+            </NavLink>
           </li>
 
           {/* Show Account link or Name based on user state */}
           <li>
             {user ? (
               <div className="flex items-center">
-                <Link to="/account" className="text-gray-600 hover:text-blue-500 font-Kanit font-medium text-sm">
+                <NavLink to="/account" className="text-gray-600 hover:text-blue-500 font-Kanit font-medium text-sm">
                   {user.name} {/* Display user's name */}
-                </Link>
+                </NavLink>
                 <button onClick={logout} className="text-red-500 ml-4 font-Kanit font-medium text-sm">
                   Logout
                 </button>
               </div>
             ) : (
-              <Link to="/loginForm" className="text-gray-600 hover:text-blue-500 font-Kanit font-medium text-sm">Login</Link>
+              <NavLink to="/loginForm" className="text-gray-600 hover:text-blue-500 font-Kanit font-medium text-sm">Login</NavLink>
             )}
           </li>
         </ul>

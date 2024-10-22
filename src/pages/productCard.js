@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useCart } from "../context/cartContext";
 import { useAuth } from "../context/AuthContext"; // Import useAuth
+import { Link } from "react-router-dom"; // Import Link for navigation
 
 const ProductCard = ({ product }) => {
   const { addToCart } = useCart(); 
@@ -35,6 +36,15 @@ const ProductCard = ({ product }) => {
       <img src={product.image} alt={product.title} className="w-full h-40 object-cover mb-4" />
       <h3 className="text-lg font-semibold mb-2">{product.title}</h3>
       <p className="text-blue-500 font-bold text-xl mb-4">${product.price}</p> 
+
+      {/* Add link to view product details */}
+      <Link 
+        to={`/product/${product.id}`} 
+        className="text-blue-500 hover:underline mb-4 block"
+      >
+        View Details
+      </Link>
+
       <button 
         onClick={handleAddToCart} 
         className="bg-blue-500 text-white p-2 rounded-md hover:bg-blue-600 transition-colors duration-300 flex items-center"
